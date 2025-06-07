@@ -1,0 +1,7 @@
+{
+  "printWidth": 120,
+  "trailingComma": "none",
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "tailwindFunctions": ["clsx", "cn", "twMerge"],
+  "tailwindStylesheet": "src/app/globals.css"
+}
