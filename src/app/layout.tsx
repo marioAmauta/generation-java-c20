@@ -1,6 +1,12 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+
+import type { Metadata } from "next";
+import { ThemeProvider } from "next-themes";
+import { Geist, Geist_Mono } from "next/font/google";
+import { PropsWithChildren } from "react";
+
+import { Footer } from "@/components/layout/footer";
+import { Header } from "@/components/layout/navigation/header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,17 +24,15 @@ export const metadata: Metadata = {
     "Sitio web de Raíces Digitales, la cohorte 20 del Bootcamp Desarrollador Full Stack Jr Java de Generation Chile"
 };
 
-export default function RootLayout({
-  children
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: PropsWithChildren) {
   return (
-    <html lang="es">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+    <html lang="es" suppressHydrationWarning>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
